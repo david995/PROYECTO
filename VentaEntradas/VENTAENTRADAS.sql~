@@ -31,7 +31,7 @@ PRIMARY KEY (dni)
 );
 
 CREATE TABLE IF NOT EXISTS evento (
-id varchar (20) NOT NULL,
+id SERIAL,
 nombre varchar (75) NOT NULL,
 estado varchar (20) NOT NULL,
 fecha_hora timestamp NOT NULL,
@@ -51,7 +51,7 @@ direccion varchar (75) NOT NULL,
 poblacion varchar (20) NOT NULL,
 codigo_postal varchar (5) NOT NULL,
 pais varchar (20) NOT NULL,
-id_evento varchar (20) NOT NULL references evento (id),
+id_evento SERIAL references evento (id),
 PRIMARY KEY (id) 
 );
 
@@ -65,19 +65,19 @@ PRIMARY KEY (num_tarjeta)
 );
 
 CREATE TABLE IF NOT EXISTS oferta (
-id varchar (20) NOT NULL,
+id SERIAL,
 fecha_inicio timestamp NOT NULL,
 fecha_fin timestamp NOT NULL,
 descuento integer NOT NULL,
 coste_puntos integer NOT NULL,
-id_evento varchar (20) NOT NULL references evento (id),
+id_evento SERIAL references evento (id),
 PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS detalles_compra (
 num_tarjeta varchar (20) NOT NULL references datos_bancarios (num_tarjeta),
 dni varchar(9) references usuario (dni),
-id_evento varchar (20) NOT NULL references evento (id),
+id_evento SERIAL references evento (id),
 fecha_hora timestamp NOT NULL,
 PRIMARY KEY (num_tarjeta, dni, fecha_hora)
 );

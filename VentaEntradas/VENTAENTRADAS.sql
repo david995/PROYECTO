@@ -43,7 +43,7 @@ PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS lugar_evento (
-id varchar (20) NOT NULL,
+id SERIAl,
 nombre varchar (50) NOT NULL,
 tipo varchar (20),
 aforo integer,
@@ -81,7 +81,6 @@ id_evento varchar (20) NOT NULL references evento (id),
 fecha_hora timestamp NOT NULL,
 PRIMARY KEY (num_tarjeta, dni, fecha_hora)
 );
-
 
 
 
