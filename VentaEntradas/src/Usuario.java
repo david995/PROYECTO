@@ -1,8 +1,8 @@
-import java.util.*;
+
 
 public class Usuario {
 
-	private int dni;
+	private String dni;
 	private String email;
 	private String nombre;
 	private String apellidos;
@@ -12,9 +12,10 @@ public class Usuario {
 	private String pais;
 	private int telefono;
 	
-
 	
-	public Usuario(int dni_, String email_,String nombre_,String apellidos_, String direccion_,String poblacion_, int cp_, String pais_, int telefono_){
+	
+	
+	public Usuario(String dni_, String email_,String nombre_,String apellidos_, String direccion_,String poblacion_, int cp_, String pais_, int telefono_){
 		
 		dni=dni_;
 		nombre=nombre_;
@@ -27,27 +28,13 @@ public class Usuario {
 		
 	}
 
-	
-	/*public String comprarentrada(int numentradas){
-		String msg="";
-		
-		
-		
-		return msg;
-	}
-	
-	public String cancelarcompra(int numserieentrada){
-		String msg="";
-		
-		
-		
-		return msg;
-	}*/
-	
-	
-	public int getDni() {return dni;}
 
-	public void setDni(int dni) {this.dni = dni;}
+	
+	
+	
+	public String getDni() {return dni;}
+
+	public void setDni(String dni) {this.dni = dni;}
 
 	public String getEmail() {return email;}
 
@@ -80,6 +67,9 @@ public class Usuario {
 	public int getTelefono() {	return telefono;}
 
 	public void setTelefono(int telefono) {	this.telefono = telefono;}
+
+	
+    
     
     
     

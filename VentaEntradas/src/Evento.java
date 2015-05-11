@@ -5,6 +5,7 @@ import java.sql.Statement;
 import java.util.*;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 
 public class Evento {
@@ -13,8 +14,8 @@ public class Evento {
 	
 	private int id;
 	private String nombre;
-	private String localCelebracion;
-	private String ciudad;
+	private String Direccion;
+	private String poblacion;
 	private String estado;
 	private Date fecha;
 	private String tipo;
@@ -24,21 +25,40 @@ public class Evento {
 	private int numSerieEntrada [];
 	private int contador=entradasTotales-entradasDisponibles;
 	
+	private String Sala;
+	private String Asiento;
+	private String NumeroDeEntradas;
+	private String Datos;
+	private String Pais;
+	private String Aforo;
+	private String codigoPostal;
+	private String NombreLugarEvento;
+	
+	
 	
 	public Evento(){
 		
 	}
 	
-	public Evento(int id_, String nombre_, String localCelebracion_, String ciudad_, String estado_, Date fecha_, String tipo_){
+	public Evento(int id_, String nombre_, String Direccion_, String poblacion_, 
+			String estado_, Date fecha_, String tipo_,String Sala_,String Asiento_,String NumeroDeEntradas_,String 
+			Datos_,String Pais_,String Aforo_,String codigoPostal_){
 		
 		id=id_;
 		nombre=nombre_;
-		localCelebracion=localCelebracion_;
-		ciudad=ciudad_;
+		Direccion=Direccion_;
+		poblacion=poblacion_;
 		estado=estado_;
 		fecha=fecha_;
 		tipo=tipo_;
-		
+		Sala=Sala_;
+		Asiento=Asiento_;
+		NumeroDeEntradas=NumeroDeEntradas_;
+		Datos=Datos_;
+		Pais=Pais_;
+		Aforo=Aforo_;
+		codigoPostal=codigoPostal_;
+		NombreLugarEvento=NombreLugarEvento;
 		
 		
 	}
@@ -56,17 +76,17 @@ public class Evento {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getLocalCelebracion() {
-		return localCelebracion;
+	public String getDireccion() {
+		return Direccion;
 	}
-	public void setLocalCelebracion(String localCelebracion) {
-		this.localCelebracion = localCelebracion;
+	public void setDireccion_(String localCelebracion) {
+		this.Direccion = localCelebracion;
 	}
-	public String getCiudad() {
-		return ciudad;
+	public String setPoblacion() {
+		return poblacion;
 	}
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
+	public void setPoblacion(String ciudad) {
+		this.poblacion = ciudad;
 	}
 	public String getEstado() {
 		return estado;
@@ -88,7 +108,8 @@ public class Evento {
 		this.tipo = tipo;
 	}
 	
-	public void DarAlta(int id_,String nombre_,String localCelebracion_, String ciudad_,String estado_,Date fecha_,String tipo_){
+	public void DarAlta(int id_,String nombre_,String Direccion_, String poblacion_,String estado_,Date fecha_,String tipo_,String Sala_,String Asiento_,String NumeroDeEntradas_,String 
+			Datos_,String Pais_,String Aforo_,String codigoPostal_,String NombreLugarEvento_){
 		
 	     
 			String driver = "org.postgresql.Driver";
@@ -100,7 +121,8 @@ public class Evento {
 	            Class.forName(driver);
 	            Connection connect=(Connection) DriverManager.getConnection(connectString,user,password);
 	            Statement consulta= connect.createStatement();
-	            consulta.executeUpdate("insert into Evento (ID, Nombre, Apellidos, Email, Contraseña, Teléfono) values('"+id_+"','"+nombre_+"','"+localCelebracion_+"','"+ciudad_+"','"+estado_+"','"+fecha_+" "+tipo_+"')");
+	            consulta.executeUpdate("insert into evento (ID, Nombre, Estado, Fecha_Hora, Sala, Asiento, Datos, Num_Entradas_Disponibles) values('"+id_+"','"+nombre_+"','"+estado_+"','"+fecha_+"','"+Sala_+"','"+Asiento_+"','"+Datos_+" "+NumeroDeEntradas_+"')");
+	            consulta.executeUpdate("insert into lugar_evento (Nombre, tipo, aforo, direccion, poblacion, codigo_postal, pais) values('"+NombreLugarEvento_+"','"+tipo_+"','"+Aforo_+"','"+Direccion_+"','"+poblacion_+"','"+codigoPostal_+"','"+Pais_+" ')");
 
 	         } catch(SQLException e){
 	            JOptionPane.showMessageDialog(null,"El evento ya existe");
@@ -122,7 +144,7 @@ public class Evento {
             Class.forName(driver);
             Connection connect=(Connection) DriverManager.getConnection(connectString,user,password);
             Statement consulta=(Statement) connect.createStatement();
-            consulta.executeUpdate("delete into Evento(ID) values('"+id_+"')");
+            consulta.executeUpdate("delete into EVENTO(ID) values('"+id_+"')");
 
          } catch(SQLException e){
             JOptionPane.showMessageDialog(null,"El evento ya existe");
@@ -172,5 +194,4 @@ public class Evento {
 	
 	
 }//FIN CLASE
-
 

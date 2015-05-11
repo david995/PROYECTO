@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 public class MaquinaGestora {
 	
 	
-	ArrayList<Usuario> arraylistusuario = new ArrayList<Usuario>();
+	//ArrayList<Usuario> arraylistusuario = new ArrayList<Usuario>();
 	
 	/*
 	public void darAltaUsuario()
@@ -38,18 +38,122 @@ public class MaquinaGestora {
     } 
 }
 	
-	public void darAltaUsuario(){
+	public void darBajaUsuario(int DNI, String Nombre){
 		
-		for (int i = 0; i < arraylistusuario.size(); i++) {
+		
+		
+			 // Insertar datos a la bd:
+			String driver = "org.postgresql.Driver";
+			String connectString = "jdbc:postgresql://localhost:5432/ventaentradas";
+			String user = "postgres";
+			String password = "tonphp";
 			
+	         try{
+	            Class.forName(driver);
+	            Connection connect=(Connection) DriverManager.getConnection(connectString,user,password);
+	            Statement consulta=(Statement) connect.createStatement();
+	            consulta.executeUpdate("DELETE FROM usuario  WHERE  Nombre = '"+Nombre+"'  AND DNI = '"+DNI+"';");
+
+	         } catch(SQLException e){
+	            JOptionPane.showMessageDialog(null,"Usuario borrado");
+
+	        } catch(ClassNotFoundException e){
+	            JOptionPane.showMessageDialog(null,"Error inesperado");
+	    } 
+	
 			
-			
-		}
+		
 		
 	}
 	
 	
+	public ResultSet BuscarEvento(String Nombre){
+		 
+		ResultSet rs = null;
+		 // Insertar datos a la bd: //modificar conexion en caso de que no funcione
+		String driver = "org.postgresql.Driver";
+		String connectString = "jdbc:postgresql://localhost:5433/ventanentradas";
+		String user = "postgres";
+		String password = "event4all";
+		
+         try{
+            Class.forName(driver);
+            Connection connect=(Connection) DriverManager.getConnection(connectString,user,password);
+            Statement consulta=(Statement) connect.createStatement();
+           rs=  consulta.executeQuery("SELECT * FROM EVENTO  WHERE  Nombre = '"+Nombre+"'");
+
+         } catch(SQLException e){
+          
+
+        } catch(ClassNotFoundException e){
+            JOptionPane.showMessageDialog(null,"No hay eventos con ese nombre");
+    } 
+
+		
+		
+         return rs;	
+		
+	 }
 	
+
+	public ResultSet BuscarEventosActivo(){
+		
+		ResultSet rs = null;
+		 // Insertar datos a la bd: //modificar conexion en caso de que no funcione
+		String driver = "org.postgresql.Driver";
+		String connectString = "jdbc:postgresql://localhost:5433/ventanentradas";
+		String user = "postgres";
+		String password = "event4all";
+		
+		
+         try{
+        	
+            Class.forName(driver);
+            Connection connect=(Connection) DriverManager.getConnection(connectString,user,password);
+            Statement consulta=(Statement) connect.createStatement();
+            rs = consulta.executeQuery("SELECT * FROM evento  WHERE  estado='activo'");
+            if(rs!=null){
+            }else{
+            }
+           
+         } catch(Exception e){
+          
+        	 System.out.println(e.toString());
+
+        } 
+		return rs;
+		
+			
+		
+	 }
+	
+	
+	
+	public void existeUsuario(int DNI, String Nombre){
+		
+		 // Insertar datos a la bd:
+		String driver = "org.postgresql.Driver";
+		String connectString = "jdbc:postgresql://localhost:5432/ventaentradas";
+		String user = "postgres";
+		String password = "tonphp";
+		
+         try{
+            Class.forName(driver);
+            Connection connect=(Connection) DriverManager.getConnection(connectString,user,password);
+            Statement consulta=(Statement) connect.createStatement();
+            consulta.executeUpdate("SELECT DNI,Nombre FROM USUARIO  WHERE  Nombre = '"+Nombre+"' AND DNI = "+DNI+" ");
+
+         } catch(SQLException e){
+          
+
+        } catch(ClassNotFoundException e){
+            JOptionPane.showMessageDialog(null,"No existe el usuario");
+    } 
+
+		
+		
+		
+	}
 	
 	
 
@@ -90,6 +194,7 @@ public class MaquinaGestora {
 	
 	
 }
+
 
 
 

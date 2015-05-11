@@ -9,7 +9,7 @@ public class Cliente extends Usuario{
 	
 	
 	//Const
-	public Cliente(int dni_, String email_, String nombre_, String apellidos_,String direccion_, String poblacion_, int cp_, String pais_,int telefono_,int puntos_, int ofertas_,String contraseña_) {
+	public Cliente(String dni_, String email_, String nombre_, String apellidos_,String direccion_, String poblacion_, int cp_, String pais_,int telefono_,int puntos_, int ofertas_,String contraseña_) {
 		super(dni_, email_, nombre_, apellidos_, direccion_, poblacion_, cp_, pais_,telefono_);
 		
 		puntos = puntos_;
@@ -94,7 +94,6 @@ public class Cliente extends Usuario{
 		}
 
 }
-
 
 
 
