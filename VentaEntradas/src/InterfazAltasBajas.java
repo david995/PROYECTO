@@ -1,6 +1,3 @@
-package GUI;
-import Funcionalidad.Evento;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
